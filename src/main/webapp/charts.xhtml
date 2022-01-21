@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>PrimeFaces</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+
+            <p:layout fullPage="true">
+
+ 					 
+                 <p:layoutUnit position="west" size="200">
+                    <h:form id="form2">
+                        <p:menu>
+                            <p:submenu label="Navigations">
+                                <p:menuitem value="Find Smartphones" outcome="phone.xhtml" icon="ui-icon-star"/>
+                                <p:menuitem value="Find Positions" outcome="position.xhtml" icon="ui-icon-star"/> 
+                                <p:menuitem value="charts" outcome="charts.xhtml" icon="ui-icon-star"/> 
+                                  <p:menuitem value="Localisation" outcome="map.xhtml" icon="ui-icon-star"/> 
+                            </p:submenu>
+                        </p:menu> 
+                    </h:form>
+                </p:layoutUnit>
+
+
+ 				<p:layoutUnit position="center">
+ 				
+ 	               <p:panel header="Statistiques">
+                    <p:panelGrid columns="2">
+                      <h:form id="form">
+                        <p:pieChart id="tab" value="#{chartBean.initPieModel()}" title="Nombre de position par smartphone" style="width : 500px; height: 500px"/>
+                      </h:form>
+                        
+                    </p:panelGrid>
+                    
+                </p:panel>
+                
+                
+                </p:layoutUnit>
+				<p:layoutUnit position="center">
+                <p:panel header="Statistiques">
+                    <p:panelGrid columns="2">
+                        <p:barChart value="#{chartBean.initBarModel()}" title="Positions by Smartphones" style="width : 500px; height: 500px"/>
+
+                    </p:panelGrid>
+                </p:panel>
+                
+            </p:layoutUnit>
+
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+</html>

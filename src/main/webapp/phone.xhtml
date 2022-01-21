@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>PrimeFaces</title>
+            </f:facet>
+            <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+            
+        </h:head>
+
+        <h:body>
+
+            <p:layout fullPage="true">
+
+
+                 <p:layoutUnit position="west" size="250" header="Menu" collapsible="true">
+                    <h:form id="form2">
+                        <p:menu>
+                            <p:submenu>
+                                <p:menuitem value="Find Smartphones" outcome="phone.xhtml" />
+                                <p:menuitem value="Find Positions" outcome="position.xhtml"/> 
+                                 <p:menuitem value="charts" outcome="charts.xhtml"/> 
+                                  <p:menuitem value="Localisation" outcome="map.xhtml"/> 
+                            </p:submenu>
+                        </p:menu> 
+                    </h:form>
+                </p:layoutUnit>
+
+
+                <p:layoutUnit position="center">
+                    <p:panel>
+                        <p:panelGrid columns="2">
+                            <p:panelGrid columns="1">
+	                            <h:form>
+			                        <p:panelGrid columns="4">
+			                            <p:outputLabel value="date1"/>
+			                            <p:calendar pattern="yyyy-MM-dd"  value="#{positionbean.date1}" id="cal"  navigator="true" />
+			                            <p:outputLabel value="date2"/>
+			                            <p:calendar pattern="yyyy-MM-dd"  value="#{positionbean.date2}" id="cal1"  navigator="true" />
+										<p:commandButton value="search" actionListener="#{positionbean.findPositionByDate()}"/>
+			                        </p:panelGrid>
+			                       
+			                    </h:form>
+                               
+                                
+                            </p:panelGrid>
+                            
+                      
+                        </p:panelGrid>
+                    </p:panel>    
+
+
+
+                </p:layoutUnit>
+
+            </p:layout>
+                        <p:layout  fullPage="true">
+            
+                             <p:layoutUnit position="west" size="250" header="Menu" collapsible="true">
+            
+            <f:view>
+             <h:form id="f2">
+					                <p:fieldset legend="Smartphones Localisation ">
+					                    <p:growl id="growl" showDetail="true" />
+					                    <p:gmap id="gmap" center="31.6,-8" zoom="7" type="HYBRID" model="#{positionbean.getSimplemodel()}"  style="width:100%;height:600px">
+					                      <p:ajax event="overlaySelect" listener="#{positionbean.onMarkerSelect}" update="growl" />
+					                    
+					                    </p:gmap>
+					                </p:fieldset>
+					            </h:form>
+        </f:view>
+                        </p:layoutUnit>
+                    </p:layout>
+        
+
+        </h:body>
+
+    </f:view>
+</html>
